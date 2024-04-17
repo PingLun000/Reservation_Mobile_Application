@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="ReservationMobileApp.Views.ReservationDetailsView"
+
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             Visual="Material"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
+   
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="3*" />
+                 
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Text="Reservation Request Details" FontAttributes="Bold" FontSize="30"
+                   TextColor="#533F95"  HorizontalOptions="CenterAndExpand" Padding="20" 
+                   HorizontalTextAlignment="Center" 
+                     VerticalOptions="Start" Style="{StaticResource PrimaryLabelHeader}"/>
+
+            <ImageButton Source="back.png"  HeightRequest="30" WidthRequest="30"
+                Grid.Row="0" HorizontalOptions="Start" Aspect="AspectFit"
+                VerticalOptions="Start" Margin="10,30"
+                Clicked="ImageButton_Clicked" />
+
+            <StackLayout Grid.Row="2" Spacing="10" Padding="10"
+                         VerticalOptions="Start">
+                <StackLayout Orientation="Horizontal" Spacing="10">
+
+                    <Label Text="Product ID: " FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                           />
+                    <Label Text="{Binding SelectedReservation.OrderId}"
+                           FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
+                          />
+                </StackLayout>
+
+                 <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label Text="Product Name: " FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                    <Label Text="{Binding SelectedReservation.ProductName}"
+                           FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                </StackLayout> 
+
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label Text="Total Deposit of reservation: " FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                    <Label Text="{Binding SelectedReservation.TotalCost}"
+                           FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}" />
+                </StackLayout>
+
+             <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label Text="Quantity: " FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                    <Label Text="{Binding SelectedReservation.Quantity}"
+                           FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label Text="Status: " FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                    <Label Text="{Binding SelectedReservation.Status}"
+                           FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label Text="SelectedDate: " FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                    <Label Text="{Binding SelectedReservation.SelectedDate}"
+                           FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}" />
+                </StackLayout>
+                
+
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label Text="SelectedTime: " FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                    <Label Text="{Binding SelectedReservation.SelectedTime}"
+                           FontSize="Subtitle"
+                           TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}" />
+                </StackLayout>
+            
+            </StackLayout>
+
+           <!-- <Grid Grid.Row="3" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Text="-" FontSize="30" TextColor="White"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource LightUpDownButtonColor}, Dark={StaticResource DarkUpDownButtonColor}}"
+                        Grid.Column="0"
+                        HorizontalOptions="End"
+                        Command="{Binding DecrementOrderCommand}" />
+
+                <Entry Text="{Binding TotalQuantity}" Grid.Column="1"
+                       BackgroundColor="{DynamicResource CounterBackground}"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Center" FontSize="30"
+                       TextColor="{DynamicResource PrimaryDarkTextColor}"/>
+
+                <pancake:PancakeView Grid.Column="1" CornerRadius="20,20,20,20"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightCounterBackgroundColor}, Dark={StaticResource DarkCounterBackgroundColor}}">
+
+                                     
+                <Entry Text="{Binding TotalQuantity}" Grid.Column="1"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Center" FontSize="30"
+                       WidthRequest="40"
+                       BackgroundColor="Transparent"
+                       />
+                </pancake:PancakeView>
+
+                <Button Text="+" FontSize="30" TextColor="White"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource LightUpDownButtonColor}, Dark={StaticResource DarkUpDownButtonColor}}"
+                        Grid.Column="2"
+                        HorizontalOptions="Start"
+                        Command="{Binding IncrementOrderCommand}" />
+            </Grid>-->
+
+            <StackLayout Grid.Row="3">
+                <BoxView />
+                <StackLayout Orientation="Horizontal" >
+                    <pancake:PancakeView CornerRadius="20,20,20,20"
+                                     HorizontalOptions="Center">
+                        <Button Text="Confirm "
+                            BackgroundColor="LightBlue"    
+                            WidthRequest="200" HorizontalOptions="Center"
+                            Command="{Binding ConfirmReservationCommand}"
+                            HeightRequest="50" />
+                    </pancake:PancakeView>
+
+                    <pancake:PancakeView CornerRadius="20,20,20,20"
+                                     HorizontalOptions="Center">
+                        <Button Text="Denied" BackgroundColor="LightBlue"    
+                            WidthRequest="200" HorizontalOptions="Center"
+                            Command="{Binding DeniedReservationCommand}"
+                            HeightRequest="50" />
+                    </pancake:PancakeView>
+                </StackLayout>
+            </StackLayout>
+            
+                <Button Text="Go To Home"
+                        BackgroundColor="LightSlateGray"    
+                        HeightRequest="60"
+                       Grid.Row="5"
+                        Command="{Binding HomeCommand}" />
+           
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+
+ 

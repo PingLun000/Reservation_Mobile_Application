@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:st="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:helpers="clr-namespace:DemoApp.Helpers"
+             xmlns:vm="clr-namespace:ReservationMobileApp.ViewModels"
+             
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="ReservationMobileApp.Views.ServiceProviderReservationPage"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <vm:ServiceProviderReservationPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid Margin="20,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+         </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                    
+                <!--get the username binding from the login page -->
+                <Label Text="Welcome Service Provider " Grid.Row="0" Grid.Column="0"
+                       Style="{StaticResource SecondaryLabel}" />
+                <Label Text="{Binding UserName}" Grid.Row="1" Grid.Column="0" FontSize="20"
+                       FontAttributes="Bold" Style="{StaticResource PrimaryLabel}" />
+ 
+
+            </Grid>
+
+           
+            <!--Lastest services -->
+            <Label Grid.Row="2" Text="Latest Request" TextColor="#533F95"  HorizontalOptions="CenterAndExpand" 
+                   HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Title"
+                   Style="{StaticResource PrimaryLabelHeader}" />
+            <Grid Grid.Row="3"  Padding="20" >
+                <!-- get the latest reservation requestor details from the viewmodels-->
+                <CollectionView ItemsSource="{Binding LatestReservationRequestorDetails}" 
+                                 Margin="0,20,10,0" VerticalOptions="Start"
+                            VerticalScrollBarVisibility="Default"
+                            SelectionMode="Single"
+                            SelectionChanged="CV_SelectionChanged"
+                                > 
+                    
+                    <CollectionView.ItemTemplate >
+                        <DataTemplate >
+                            <StackLayout Margin="0,30" >
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+
+                                    </Grid.RowDefinitions>
+
+
+                                    <StackLayout>
+                                    <Label Text="{Binding Username}" FontAttributes="Bold" FontSize="15" Grid.Row="0" />
+                                        <Image Grid.Row="0" Source="Star" HorizontalOptions="Start" WidthRequest="20"  />
+
+                                        <Label Grid.Row="1" Text="{Binding ProductName, StringFormat='{0}'}" FontSize="15" FontAttributes="Bold"/>
+
+                                        <Label Grid.Row="2" Text="{Binding OrderId,StringFormat='Reservation Id :  {0}'}" FontAttributes="Bold"/>
+            
+                                    </StackLayout>
+
+
+
+                                </Grid>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+
+
+    <!--<ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout  VerticalOptions="FillAndExpand" >
+                        <SearchBar HorizontalOptions="FillAndExpand" Placeholder="Search"/>
+                       
+                        <CollectionView ItemsSource="{Binding Categorys.categories}" ItemsLayout="HorizontalList" HeightRequest="180">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+
+                                    <StackLayout HeightRequest="100" HorizontalOptions="FillAndExpand" Padding="10">
+                                        <pancake:PancakeView BackgroundColor="Orange" HeightRequest="180" WidthRequest="150">
+                                            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Label Text="{Binding categories.name}" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black"/>
+                                            </StackLayout>
+                                        </pancake:PancakeView>
+                                    </StackLayout>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>                        
+                    </StackLayout>
+
+                    <StackLayout>
+                        <CollectionView ItemsSource="{Binding GeoCodeRestaurant.nearby_restaurants}" >
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+
+                                    <StackLayout HeightRequest="180" Padding="10" >
+                                        <pancake:PancakeView BackgroundColor="LightPink" >
+                                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin=" 0">
+                                      
+
+                                                <pancake:PancakeView HeightRequest="100" Margin=" 0" Padding="0" BackgroundColor="Black" >
+                                                    <ffimageloading:CachedImage Aspect="AspectFill" Source="{Binding restaurant.photos_url,
+                                                        StringFormat='StoreType = {0}'}"/>
+                                                    <ffimageloading:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
+			                                                WidthRequest="300" HeightRequest="300"
+			                                                DownsampleToViewSize="true"
+			                                                Source = "{Binding restaurant.featured_image}">
+                                                    </ffimageloading:CachedImage>
+                                                </pancake:PancakeView>
+
+                                                <Label Margin ="10,0" Text="{Binding restaurant.name, StringFormat='Name = {0}'}" TextColor="DarkGreen" FontSize="20"/>
+                                                <Label Margin="10,0" Text="{Binding restaurant.user_rating.aggregate_rating}" TextColor="DarkBlue" FontSize="20"/>
+                                              
+                                            </StackLayout>
+                                        </pancake:PancakeView>
+                                    </StackLayout>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                    
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>-->
+
+
+</ContentPage>

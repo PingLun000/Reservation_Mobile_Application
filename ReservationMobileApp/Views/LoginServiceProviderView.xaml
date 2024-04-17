@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:DemoApp.Helpers"
+             xmlns:vm="clr-namespace:ReservationMobileApp.ViewModels"
+             xmlns:behaviors="clr-namespace:ReservationMobileApp.Behaviors"
+             xmlns:converters="clr-namespace:ReservationMobileApp.Converters"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="False"
+             x:Class="ReservationMobileApp.Views.LoginServiceProviderView"
+             Visual="Material">
+    <ContentPage.BindingContext>
+        <vm:LoginServiceProviderViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TextToBoolConverter x:Key="dataConverter1" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="LightGray">
+           
+            <Grid Padding="20" VerticalOptions="Center" Opacity="0.6">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="0" VerticalOptions="Center">
+                    <Label Text="Service" FontFamily="CabinSketch"
+                       TextColor="DarkRed"
+                           FontAttributes="Bold" FontSize="40" HorizontalOptions="Center" />
+                    <Label Text="Provider" FontFamily="CabinSketch"
+                       TextColor="DeepSkyBlue"
+                           FontAttributes="Bold" FontSize="40" HorizontalOptions="Center" />
+                    <Label Text="Login Form" FontFamily="CabinSketch"
+                       TextColor="Black"
+                           FontAttributes="Bold" FontSize="40" HorizontalOptions="Center" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Spacing="10">
+
+                    <!--binding the user input and pass it to the view model -->
+                    <Frame CornerRadius="20">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="account.jpg"  HeightRequest="30" WidthRequest="30"
+                Grid.Row="0" HorizontalOptions="Start" Aspect="AspectFit"
+                VerticalOptions="Center"/>
+                            <Entry Placeholder="Enter Username"
+                                       Text="{Binding ServiceProviderName}"
+                                       x:Name="EntryServiceProviderName"
+                                       BackgroundColor="Transparent"
+                                       HorizontalOptions="FillAndExpand">
+                                <Entry.Behaviors>
+                                    <behaviors:NotNullBehavior x:Name="UserServiceProcider" />
+                                </Entry.Behaviors>
+                            </Entry>
+                        </StackLayout>
+                    </Frame>
+
+
+                    <Frame CornerRadius="20">
+                        <StackLayout Orientation="Horizontal"
+                                         >
+                            <Image Source="account.jpg"  HeightRequest="30" WidthRequest="30"
+                Grid.Row="0" HorizontalOptions="Start" Aspect="AspectFit"
+                VerticalOptions="Center"/>
+                            <Entry Placeholder="Enter Password"
+                                       Text="{Binding ServiceProviderPassword}"
+                                       x:Name="EntryServiceProviderPassword"
+                                       BackgroundColor="Transparent"
+                                       IsPassword="True"
+                                       HorizontalOptions="FillAndExpand">
+                                <Entry.Behaviors>
+                                    <behaviors:NotNullBehavior x:Name="UserServiceProviderPassword" />
+                                </Entry.Behaviors>
+                            </Entry>
+                        </StackLayout>
+                    </Frame>
+
+
+                    <Button Text="Login" FontAttributes="Bold" HorizontalOptions="Center" BackgroundColor="Red"
+                        TextColor="Green" WidthRequest="200" HeightRequest="60" CornerRadius="20"
+                        Command="{Binding LoginCommandSP}" IsEnabled="{Binding Disable1}">
+                        <Button.Triggers>
+                            <MultiTrigger TargetType="Button">
+                                <MultiTrigger.Conditions>
+                                    <BindingCondition Binding="{Binding Source={x:Reference EntryServiceProviderName},
+                                Path=Text,
+                                Converter={StaticResource dataConverter1}}" Value="True" />
+
+                                    <BindingCondition Binding="{Binding Source={x:Reference EntryServiceProviderPassword},
+                                Path=Text,
+                                Converter={StaticResource dataConverter1}}" Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True" />
+                            </MultiTrigger>
+                        </Button.Triggers>
+                    </Button>
+
+
+                   <!-- <Label Text="New Users :" TextColor="Black" FontAttributes="Bold"/>-->
+
+                    <!--<StackLayout Orientation="Horizontal">
+                        <CheckBox x:Name="CheckBoxAgree1" VerticalOptions="Center" Color="White"
+                                  IsChecked="True"/>
+                        <Label Text="I Agree" TextColor="DarkRed" VerticalOptions="Center"
+                                   FontAttributes="Bold"/>
+                    </StackLayout>-->
+
+                    <Button Text="Register" FontAttributes="Bold" HorizontalOptions="Center" BackgroundColor="Green"
+                        TextColor="Red" WidthRequest="200" HeightRequest="60" CornerRadius="20"
+                        Command="{Binding RegisterCommandSP}" >
+                       <!-- <Button.Triggers>
+                            <DataTrigger TargetType="Button"
+                                 Binding="{Binding Source={x:Reference CheckBoxAgree1},
+                        Path=IsChecked}" Value="False">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Button.Triggers>-->
+                    </Button>
+
+
+                </StackLayout>
+            </Grid>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

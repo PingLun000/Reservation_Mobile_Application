@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:ReservationMobileApp.ViewModels"
+             x:Class="ReservationMobileApp.Views.AccountView">
+    <ContentPage.BindingContext> <!--set the binding context to the specific view model and the data able to transmit between pages-->
+        <vm:ProductsViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" Source="lightbulb1.jpg" Aspect="AspectFill" VerticalOptions="Start" />
+            
+            <StackLayout Grid.Row="1" Padding="30" Spacing="20">
+                <Label Text="User Details" TextColor="#533F95"  HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Title"/>
+                <StackLayout Spacing="25">
+                    <StackLayout> 
+                        <Label Text="User Name:" Font="18" TextColor="Black" HorizontalOptions="FillAndExpand" />
+                        <Label Text="{Binding UserName}" HorizontalOptions="FillAndExpand" TextColor="Gray" />
+                    </StackLayout>
+                    <Label Text="Contact Us" TextColor="#533F95"  HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Title"/>
+                    <StackLayout>
+                        <Label Text="Contact Number:" Font="18" TextColor="Black" HorizontalOptions="FillAndExpand" />
+                        <Label Text="999-9999-99" HorizontalOptions="FillAndExpand" TextColor="Gray" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Email:" Font="18" TextColor="Black" HorizontalOptions="FillAndExpand" />
+                        <Label Text="TR.Reserve@live.com" HorizontalOptions="FillAndExpand" TextColor="Gray" />
+                    </StackLayout>
+                </StackLayout>
+                <Button Text="Logout" TextColor="#533F95" BackgroundColor="Transparent" WidthRequest="100" FontAttributes="Bold" BorderColor="#533F95" BorderWidth="1" BorderRadius="10" HorizontalOptions="Center" Command="{Binding LogoutCommand}" />
+            </StackLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- 
+        
+        <StackLayout>
+
+            <TableView Intent="Settings">
+                <TableRoot>
+                    <TableSection Title="My settings">
+                        <EntryCell Label="Name:" Placeholder="Enter Your First Name Here"/>
+                        <TextCell Text="{Binding UserName}"/>
+                        <SwitchCell Text="Show my name" On="true"/>
+                        <SwitchCell Text="Update app automatically"/>
+                    </TableSection>
+
+                </TableRoot>
+            </TableView>
+          
+        </StackLayout>-->
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

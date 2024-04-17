@@ -1,0 +1,48 @@
+﻿<Properties StartupConfiguration="{834DA04C-43BD-4D71-9354-F47FFB1AB9E1}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ReservationMobileApp/Services/ConfirmedReservationService.cs">
+    <Files>
+      <File FileName="ReservationMobileApp/ViewModels/CartViewModel.cs" Line="38" Column="1" />
+      <File FileName="ReservationMobileApp/ViewModels/ReservationDetailsViewModel.cs" Line="47" Column="37" />
+      <File FileName="ReservationMobileApp/Views/ReservationDetailsView.xaml" Line="27" Column="1" />
+      <File FileName="ReservationMobileApp/Model/ReservationCartItem.cs" Line="20" Column="1" />
+      <File FileName="ReservationMobileApp/Services/ReservatioonCartItemService.cs" Line="12" Column="15" />
+      <File FileName="ReservationMobileApp/Services/ConfirmedReservationService.cs" Line="42" Column="16" />
+      <File FileName="ReservationMobileApp/Services/ServicesProviderService.cs" Line="50" Column="10" />
+      <File FileName="ReservationMobileApp/Views/SettingsPage.xaml" Line="13" Column="22" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ReservationMobileApp" expanded="True">
+            <Node name="ReservationMobileApp" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
+              <Node name="Behaviors" expanded="True" />
+              <Node name="Converters" expanded="True" />
+              <Node name="Fonts" expanded="True" />
+              <Node name="Helpers" expanded="True" />
+              <Node name="Model" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="ConfirmedReservationService.cs" selected="True" />
+              </Node>
+              <Node name="ViewModels" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="SettingsPage.xaml" expanded="True" />
+              </Node>
+              <Node name="App.xaml" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ReservationMobileApp.iOS FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.ReservationMobileApp.Android TriggeredFromHotReload="False" PreferredExecutionTarget="Android.pixel_3a_pie_9_0_-_api_28" />
+</Properties>

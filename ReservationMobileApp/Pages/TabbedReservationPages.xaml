@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:tabbedPages="clr-namespace:ReservationMobileApp.Views"
+            x:Class="ReservationMobileApp.Pages.TabbedReservationPages"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom">
+ 
+    <!--Tabbed pages for service provider-->
+    <tabbedPages:ServiceProviderReservationPage Title="Latest Requst" IconImageSource="ic_home_black_24dp"></tabbedPages:ServiceProviderReservationPage>
+    <tabbedPages:UpcomingReservationView Title="Up Coming Reservation" IconImageSource="ic_message_black_24dp"></tabbedPages:UpcomingReservationView>
+    <tabbedPages:AccountView Title="Settings" IconImageSource="ic_message_black_24dp"></tabbedPages:AccountView>
+
+</TabbedPage>

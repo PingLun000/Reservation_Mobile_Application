@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ReservationMobileApp.Pages.TabbedPages"
+              
+            xmlns:tabbedPages="clr-namespace:ReservationMobileApp.Views"
+            xmlns:tabbedPages1="clr-namespace:ReservationMobileApp.Pages"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom">
+
+    <!--Tabbed home pages-->
+    <tabbedPages:ProductsView Title="Home" IconImageSource="ic_home_black_24dp"></tabbedPages:ProductsView>
+    <tabbedPages:UpcomingReservationView Title="Reservation" IconImageSource="ic_message_black_24dp"></tabbedPages:UpcomingReservationView>
+    <tabbedPages:ProductsView Title="Notification" IconImageSource="ic_notifications_black_24dp"></tabbedPages:ProductsView>
+    <tabbedPages:AccountView Title="me" IconImageSource="ic_setting_black_24dp"></tabbedPages:AccountView>
+</TabbedPage>

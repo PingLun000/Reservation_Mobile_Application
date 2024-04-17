@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="ReservationMobileApp.Themes.DarkTheme">
+
+    <Color x:Key="MainPageBackground">#212540</Color>
+    <Color x:Key="SecondaryBackground">#6d6fff</Color>
+    <Color x:Key="InnerBackground">#19CEB3</Color>
+    <Color x:Key="CounterBackground">LightGray</Color>
+    <Color x:Key="PrimaryTextColor">White</Color>
+    <Color x:Key="SecondaryTextColor">LightGray</Color>
+    <Color x:Key="ContextTextColor">Black</Color>
+    <Color x:Key="FooterTextColor">#D62B70</Color>
+    <Color x:Key="DefaultButtonColor">#19CEB3</Color>
+    <Color x:Key="InfoButtonColor">#D62B70</Color>
+    <Color x:Key="UpDownButtonColor">#19CEB3</Color>
+
+    <Color x:Key="TitleTextColor">#D62B70</Color>
+    <Color x:Key="ContentTextColor">#19CEB3</Color>
+
+</ResourceDictionary>
+

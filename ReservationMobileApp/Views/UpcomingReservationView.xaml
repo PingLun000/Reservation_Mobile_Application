@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:st="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:helpers="clr-namespace:DemoApp.Helpers"
+             xmlns:vm="clr-namespace:ReservationMobileApp.ViewModels"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="ReservationMobileApp.Views.UpcomingReservationView"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
+                <!--binding the theme of the backgroud -->
+    
+    
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <!--In order for these Setter objects to work properly, a VisualStateGroup must contain VisualState objects for all the states in that group. If there is a visual state that does not have any Setter objects, include it anyway as an empty tag-->
+            <!--The VisualStateGroups property is of type VisualStateGroupList, which is a collection of VisualStateGroup objects. Within the VisualStateManager.VisualStateGroups tags, insert a pair of VisualStateGroup tags for each group of visual states you wish to include:-->
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <vm:UpComingReservationViewModel/> 
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid Margin="20,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Welcome " Grid.Row="0" Grid.Column="0"
+                       Style="{StaticResource SecondaryLabel}" />
+                <Label Text="{Binding UserName}" Grid.Row="1" Grid.Column="0" FontSize="20"
+                       FontAttributes="Bold" Style="{StaticResource PrimaryLabel}" />
+
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+            </Grid>
+
+
+            <!--start from this line is used to show the latest services that provided by provider-->
+            <Label Grid.Row="2" Text="Up Coming Reservation" Style="{StaticResource PrimaryLabelHeader}" TextColor="#533F95"  HorizontalOptions="CenterAndExpand" 
+                   HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Title" />
+                   
+            <Grid Grid.Row="3"  Padding="20" >
+                <CollectionView ItemsSource="{Binding UpComingReservationDetails}" 
+                                 Margin="0,20,10,0" VerticalOptions="Start"
+                                 VerticalScrollBarVisibility="Default"
+                                 SelectionMode="Single"
+                                x:Name="RequestView"
+                                >
+                    <!--it is a vertical view, it ables to scroll down for the latest service -->
+                    <CollectionView.ItemTemplate >
+                        <DataTemplate >
+                            <StackLayout Margin="0,30" >
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+
+                                    </Grid.RowDefinitions>
+
+
+                                    <StackLayout>
+                                        <Label Text="{Binding Username, StringFormat='Reservation User :  {0}'}" FontAttributes="Bold" FontSize="15" Grid.Row="0" />
+                                        <Image Grid.Row="0" Source="Star" HorizontalOptions="Start" WidthRequest="20"  />
+                                        <Label Grid.Row="1" Text="Provider : "/>
+                                        <Label Grid.Row="1" Text="{Binding ProductName, StringFormat='{0}'}" FontSize="15" FontAttributes="Bold"/>
+
+                                        <Label Grid.Row="2" Text="Reservation Id : "/>
+                                        <Label Grid.Row="2" Text="{Binding OrderId,StringFormat='{0}'}" FontAttributes="Bold"/>
+
+                                    </StackLayout>
+
+
+
+                                </Grid>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+
+
+    
+</ContentPage>
